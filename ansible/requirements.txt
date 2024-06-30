@@ -1,3 +1,4 @@
 ansible[azure]
+msrestazure
 azure-mgmt-resource
 azure-identity
