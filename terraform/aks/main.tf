@@ -4,12 +4,12 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "aks" {
   name     = "myResourceGroup3"
-  location = "Central US"
+  location = "East US"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "myAKSCluster2"
-  location            = "Central US"
+  location            = "East US"
   resource_group_name = azurerm_resource_group.aks.name
   dns_prefix          = "myClusterAksNodeApp-dns"
 
