@@ -20,14 +20,14 @@
     - name: Create Resource Group
       azure_rm_resourcegroup:
         name: "myResourceGroup2"
-        location: "eastus"
+        location: "centralus"
       register: rg
 
     - name: Create AKS Cluster
       azure_rm_aks:
         resource_group: "myResourceGroup"
         name: "myClusterAksNodeApp"
-        location: "eastus"
+        location: "centralus"
         dns_prefix: "myClusterAksNodeApp-dns"
         agent_pool_profiles:
           - name: default
