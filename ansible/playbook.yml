@@ -1,0 +1,36 @@
+---
+- name: Provision Azure Kubernetes Service (AKS) Cluster
+  hosts: localhost
+  tasks:
+    - name: Log into Azure CLI
+      shell: az login --service-principal -u "{{ lookup('env', 'AZURE_CLIENT_ID') }}" -p "{{ lookup('env', 'AZURE_CLIENT_SECRET') }}" --tenant "{{ lookup('env', 'AZURE_TENANT_ID') }}"
+      changed_when: false
+
+    - name: Create Resource Group
+      azure_rm_resourcegroup:
+        name: "myResourceGroup"
+        location: "centralus"
+      register: rg
+
+    - name: Create AKS Cluster
+      azure_rm_aks:
+        resource_group: "myResourceGroup"
+        name: "myClusterAksNodeApp"
+        location: "centralus"
+        dns_prefix: "myClusterAksNodeApp-dns"
+        agent_pool_profiles:
+          - name: default
+            count: 2
+            vm_size: "Standard_DS2_v2"
+        service_principal:
+          client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
+          client_secret: "{{ lookup('env', 'AZURE_CLIENT_SECRET') }}"
+        tags:
+          Environment: DEV
+      register: aks_result
+
+    - name: Save AKS Credentials
+      shell: az aks get-credentials --resource-group "myResourceGroup" --name "{{ aks_result.name }}"
+
+    - name: Verify AKS Cluster
+      shell: kubectl get nodes
