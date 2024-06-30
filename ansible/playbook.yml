@@ -1,8 +1,8 @@
 ---
 - name: Provision Azure Kubernetes Service (AKS) Cluster
   hosts: localhost
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
+#  vars:
+#    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
     - name: Log into Azure CLI
@@ -16,7 +16,7 @@
           - azure-mgmt-resource
           - azure-identity
         state: present
-        
+
     - name: Create Resource Group
       azure_rm_resourcegroup:
         name: "myResourceGroup2"
