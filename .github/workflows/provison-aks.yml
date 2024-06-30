@@ -18,10 +18,16 @@ jobs:
         with:
           python-version: '3.8'
 
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+
       - name: Install Ansible and Azure dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r ansible/requirements.txt
+          pip install ansible[azure]
+          pip install msrestazure azure-mgmt-resource azure-identity
 
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/playbook.yml

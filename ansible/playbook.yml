@@ -8,7 +8,7 @@
 
     - name: Create Resource Group
       azure_rm_resourcegroup:
-        name: "myResourceGroup"
+        name: "myResourceGroup2"
         location: "centralus"
       register: rg
 
