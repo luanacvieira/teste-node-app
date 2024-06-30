@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "aks" {
-  name     = "myResourceGroup6"
+  name     = "myResourceGroup7"
   location = "East US"
 }
 
@@ -16,7 +16,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name       = "default"
     node_count = 2
-    vm_size    = "Standard_D2a_v4"
+    vm_size    = "Standard_L8as_v3"
   }
 
   identity {
