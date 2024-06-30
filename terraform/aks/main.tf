@@ -9,9 +9,9 @@ resource "azurerm_resource_group" "aks" {
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "myAKSCluster2"
-  location            = azurerm_resource_group.aks.location
+  location            = "Central US"
   resource_group_name = azurerm_resource_group.aks.name
-  dns_prefix          = "myaks"
+  dns_prefix          = "myClusterAksNodeApp-dns"
 
   default_node_pool {
     name       = "default"
