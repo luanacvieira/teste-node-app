@@ -9,6 +9,14 @@
       shell: az login --service-principal -u "{{ lookup('env', 'AZURE_CLIENT_ID') }}" -p "{{ lookup('env', 'AZURE_CLIENT_SECRET') }}" --tenant "{{ lookup('env', 'AZURE_TENANT_ID') }}"
       changed_when: false
 
+    - name: Ensure Python dependencies are installed
+      pip:
+        name:
+          - msrestazure
+          - azure-mgmt-resource
+          - azure-identity
+        state: present
+        
     - name: Create Resource Group
       azure_rm_resourcegroup:
         name: "myResourceGroup2"
