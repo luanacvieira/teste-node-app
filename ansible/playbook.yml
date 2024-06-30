@@ -1,10 +1,10 @@
 ---
 - name: Provision Azure Kubernetes Service (AKS) Cluster
   hosts: localhost
-   vars:
+  vars:
     ansible_python_interpreter: /opt/hostedtoolcache/Python/3.8.18/x64/bin/python
-    
-   tasks:
+
+  tasks:
     - name: Log into Azure CLI
       shell: az login --service-principal -u "{{ lookup('env', 'AZURE_CLIENT_ID') }}" -p "{{ lookup('env', 'AZURE_CLIENT_SECRET') }}" --tenant "{{ lookup('env', 'AZURE_TENANT_ID') }}"
       changed_when: false
