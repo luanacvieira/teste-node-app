@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "aks" {
-  name     = "myResourceGroup3"
+  name     = "myResourceGroup4"
   location = "East US"
 }
 
