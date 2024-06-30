@@ -1,0 +1,33 @@
+name: Deploy AKS Cluster
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: terraform/aks
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -auto-approve
+        working-directory: terraform/aks
+        env:
+          ARM_CLIENT_ID: "ea0f02da-f58e-490d-89d1-7fb4dbef53a7"
+          ARM_CLIENT_SECRET: "QT98Q~XSoVgBhhRq7-X5_eZeF2N.IaxtmXwn~anY"
+          ARM_SUBSCRIPTION_ID: "8c35b025-ce1a-48a1-8491-b82ae7d9249e"
+          ARM_TENANT_ID: "bd7fc3cc-a630-4a2b-a6b9-d3878045c85d"
