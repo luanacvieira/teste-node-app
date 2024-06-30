@@ -23,6 +23,9 @@ jobs:
         run: terraform init
         working-directory: terraform/aks
 
+      - name: Terraform Destroy (if exists)
+        run: terraform destroy -auto-approve
+
       - name: Terraform Apply
         id: apply
         run: terraform apply -auto-approve
