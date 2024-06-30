@@ -28,6 +28,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible[azure]
           pip install msrestazure azure-mgmt-resource azure-identity
+          ansible-galaxy install azure.aks
 
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/playbook.yml
