@@ -1,0 +1,3 @@
+ansible[azure]
+azure-mgmt-resource
+azure-identity
